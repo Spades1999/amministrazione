@@ -1,0 +1,49 @@
+extends layout 
+
+block content 
+    h1=title
+
+    form(method='POST' action='')
+        div.form-group
+            label(for='first_name') Nome:
+            input#first_name.form-control(type='text' placeholder='Nome' name='first_name' required='true' value=(undefined===dipendente ? '' : dipendente.first_name) )
+
+            label(for='last_name') Cognome:
+            input#last_name.form-control(type='text' placeholder='Cognome' name='last_name' required='true' value=(undefined===dipendente ? '' : dipendente.last_name))
+
+            div.form-group
+                label(for='date_of_birth') Data di nascita:
+                input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===dipendente ? '' : dipendente.date_of_birth) )
+
+            label(for='email') Email:
+            input#email.form-control(type='email' placeholder='Cognome' name='last_name' required='true' value=(undefined===dipendente ? '' : dipendente.email))
+
+            label(for='phone_number') Numero di telefono:
+            input#phone_number.form-control(type='number' placeholder='Numero di telefono' name='phone_number' required='true' value=(undefined===dipendente ? '' : dipendente.phone_number))
+
+            label(for='codice_fiscale') Codice fiscale:
+            input#codice_fiscale.form-control(type='text' placeholder='Codice fiscale' name='codice_fiscale' required='true' value=(undefined===dipendente ? '' : dipendente.codice_fiscale))
+
+            label(for='conto_corrente') Conto corrente:
+            input#conto_corrente.form-control(type='text' placeholder='Conto corrente' name='conto_corrente' required='true' value=(undefined===dipendente ? '' : dipendente.conto_corrente))
+
+            label(for='iban') IBAN:
+            input#iban.form-control(type='text' placeholder='IBAN' name='iban' required='true' value=(undefined===dipendente ? '' : dipendente.iban))
+
+            div.form-group
+                label(for='societa') Società:
+                select#societa.form-control(type='select', placeholder='Seleziona una società' name='societa' required='true' )
+                    - societa_list.sort(function(a, b) {let textA = a.name; let textB = b.name; return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+                    for societa in societa_list
+                        if societa
+                            option(value=societa._id selected=(societa._id.toString()===societa.dipendente._id.toString() ? 'selected' : false) ) #{societa.name}
+                        else
+                            option(value=societa._id) #{societa.name}
+            
+
+
+            button.btn.btn-primary(type='submit') Submit
+        if errors
+            ul
+            for error in errors
+                li!= error.msg   

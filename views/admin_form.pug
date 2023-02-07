@@ -1,0 +1,39 @@
+extends layout 
+
+block content 
+    h1=title
+
+    form(method='POST' action='')
+        div.form-group
+            label(for='first_name') Nome:
+            input#first_name.form-control(type='text' placeholder='Nome' name='first_name' required='true' value=(undefined===admin ? '' : admin.first_name) )
+
+            label(for='last_name') Cognome:
+            input#last_name.form-control(type='text' placeholder='Cognome' name='last_name' required='true' value=(undefined===admin ? '' : admin.last_name))
+
+            div.form-group
+                label(for='date_of_birth') Data di nascita:
+                input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===admin ? '' : admin.date_of_birth) )
+
+            label(for='email') Email:
+            input#email.form-control(type='email' placeholder='Cognome' name='last_name' required='true' value=(undefined===admin ? '' : admin.email))
+
+            label(for='phone_number') Numero di telefono:
+            input#phone_number.form-control(type='number' placeholder='Numero di telefono' name='phone_number' required='true' value=(undefined===admin ? '' : admin.phone_number))
+
+            label(for='codice_fiscale') Codice fiscale:
+            input#codice_fiscale.form-control(type='text' placeholder='Codice fiscale' name='codice_fiscale' required='true' value=(undefined===admin ? '' : admin.codice_fiscale))
+
+            label(for='conto_corrente') Conto corrente:
+            input#conto_corrente.form-control(type='text' placeholder='Conto corrente' name='conto_corrente' required='true' value=(undefined===admin ? '' : admin.conto_corrente))
+
+            label(for='iban') IBAN:
+            input#iban.form-control(type='text' placeholder='IBAN' name='iban' required='true' value=(undefined===admin ? '' : admin.iban))
+
+            
+            
+            button.btn.btn-primary(type='submit') Submit
+        if errors
+            ul
+            for error in errors
+                li!= error.msg   

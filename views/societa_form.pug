@@ -1,0 +1,39 @@
+extends layout 
+
+block content 
+    h1=title
+
+    form(method='POST' action='')
+        div.form-group
+            label(for='name') Nome:
+            input#name.form-control(type='text' placeholder='Nome' name='name' required='true' value=(undefined===societa ? '' : societa.name) )
+
+            label(for='street_address') Indirizzo:
+            input#street_address.form-control(type='text' placeholder='Indirizzo' name='street_address' required='true' value=(undefined===societa ? '' : societa.street_address))
+            
+            label(for='email') Email:
+            input#email.form-control(type='email' placeholder='Cognome' name='last_name' required='true' value=(undefined===societa ? '' : societa.email))
+
+            label(for='phone_number') Numero di telefono:
+            input#phone_number.form-control(type='number' placeholder='Numero di telefono' name='phone_number' required='true' value=(undefined===societa ? '' : societa.phone_number))
+
+            div.form-group
+                label(for='admin') Amministratore:
+                select#admin.form-control(type='select', placeholder='Seleziona amministratore' name='admin' )
+                    - admins.sort(function(a, b) {let textA = a.last_name.toUpperCase(); let textB = b.last_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+                    for admin in admins
+                        if societa
+                            option(value=admin._id selected=(admin._id.toString()===societa.admin._id.toString() ? 'selected' : false) ) #{admin.first_name} #{admin.last_name}
+                        else
+                            option(value=admin._id) #{admin.first_name} #{admin.last_name}
+
+
+
+
+
+            button.btn.btn-primary(type='submit') Submit
+
+        if errors
+            ul
+            for error in errors
+                li!= error.msg

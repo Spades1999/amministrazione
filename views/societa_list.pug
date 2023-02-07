@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+    each societa in societa_list
+      li
+        a(href=societa.url) #{societa.name}
+
+    else
+      li Non ci sono società

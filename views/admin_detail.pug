@@ -1,0 +1,24 @@
+extends layout 
+
+block content 
+
+    h1 Amministratore: #{admin.first_name} #{admin.last_name}
+
+    p #[strong Conto Corrente:] #{admin.conto_corrente}
+
+    p #[strong Email:] #{admin.email}
+
+    p #[strong Numero di telefono:] #{admin.phone_number}
+
+    p #[strong Codice Fiscale:] #{admin.codice_fiscale}
+
+
+    div(style='margin-left:20px;margin-top:20px')
+
+        h4 Società
+        dl 
+            each societa in admins_societa
+                dt 
+                    a(href=societa.url) #{societa.name}
+            else 
+                p Questo amministratore non lavora in nessuna società registrata

@@ -1,0 +1,36 @@
+extends layout 
+
+block content 
+
+    h1 Dipendente: 
+
+    p #[strong Nome:]
+        a(href=dipendente.url)  
+        |   #{dipendente.first_name} #{dipendente.last_name}
+      
+    p #[strong Email:] 
+        a(href=dipendente.url) 
+        |    #{dipendente.email}
+
+    p #[strong Numero di telefono:] 
+        a(href=dipendente.url)  
+        |   #{dipendente.phone_number}
+
+    p #[strong Iban:] 
+        a(href=dipendente.url) 
+        |   #{dipendente.iban} 
+
+    p #[strong Conto corrente:] 
+        a(href=dipendente.url) 
+        |   #{dipendente.conto_corrente}
+
+    p #[strong Codice fiscale:] 
+        a(href=dipendente.url) 
+        |   #{dipendente.codice_fiscale}
+
+
+    p #[strong Società:] 
+            each societa in societa_dipendente
+                a(href=societa.url) #{societa.societa_name}
+            else 
+                p Questo dipendente non lavora in nessuna società registrata    

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+    each dipendente in dipendente_list
+      li
+        a(href=dipendente.url) #{dipendente.last_name} #{dipendente.first_name}
+
+    else
+      li Non ci sono dipendenti
